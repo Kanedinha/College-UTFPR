@@ -1,0 +1,3 @@
+propriedades de uma variável
+
+nome: tipo: endereço de memória (&): valor dela

@@ -1,0 +1,13 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F46K22 -DL -O11111114 -fo8 -N"C:\Users\Emers\Desktop\UTFPR\1ºPeríodo\Prog1\Aps paienl solar\05 - Código_mikroc\Codigo_certo.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\Emers\Desktop\UTFPR\1ºPeríodo\Prog1\Aps paienl solar\05 - Código_mikroc\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\Emers\Desktop\UTFPR\1ºPeríodo\Prog1\Aps paienl solar\05 - Código_mikroc\" "Codigo_certo.c" "motor.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_ADC_K22_B.mcl"	 
+hint: 0	1139	Available RAM: 3875 [bytes], Available ROM: 65536 [bytes]	 
+diagnostics: 0	122	Compilation Started	Codigo_certo.c
+diagnostics: 240	123	Compiled Successfully	Codigo_certo.c
+diagnostics: 0	122	Compilation Started	motor.c
+diagnostics: 0	123	Compiled Successfully	motor.c
+diagnostics: 0	127	All files Compiled in 109 ms	 
+hint: 0	1144	Used RAM (bytes): 20 (1%)  Free RAM (bytes): 3855 (99%)	Used RAM (bytes): 20 (1%)  Free RAM (bytes): 3855 (99%)
+hint: 0	1144	Used ROM (bytes): 2615 (4%)  Free ROM (bytes): 62921 (96%)	Used ROM (bytes): 2615 (4%)  Free ROM (bytes): 62921 (96%)
+diagnostics: 0	125	Project Linked Successfully	Codigo_certo.mcppi
+diagnostics: 0	128	Linked in 188 ms	 
+diagnostics: 0	129	Project 'Codigo_certo.mcppi' completed: 313 ms	 
+diagnostics: 0	103	Finished successfully: 02 jul 2018, 17:11:02	Codigo_certo.mcppi

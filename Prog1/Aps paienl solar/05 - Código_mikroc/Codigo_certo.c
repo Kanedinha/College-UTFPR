@@ -1,0 +1,240 @@
+// abaixo de 1.5 de sol
+//
+// 0   zero de luminosidade
+// 1.5 muito pouca luminosidade
+// 2.4 pouca luminosidade
+// 3.4 quantidade media de luminosidade
+// 4.1 muita luminosidade
+// 4.5 máxima luminosidade
+//
+// delay de 200 ms
+
+#define motor_y1           portb.rb0
+#define motor_y2           portb.rb1
+#define motor_y3           portb.rb2
+#define motor_y4           portb.rb3
+#define motor_x1           portb.rb4
+#define motor_x2           portb.rb5
+#define motor_x3           portb.rb6
+#define motor_x4           portb.rb7
+#define sol                1.5
+#define temp               200
+
+unsigned int LDR_1;
+unsigned int LDR_2;
+unsigned int LDR_3;
+unsigned int LDR_4;
+unsigned int posicao_x = 2;
+unsigned int posicao_y = 2;
+
+void analogico(){
+         LDR_1 = ADC_read(0);
+         LDR_1 = (LDR_1 * (5.0/1024.0));
+         LDR_2 = ADC_read(1);
+         LDR_2 = (LDR_2 * (5.0/1024.0));
+         LDR_3 = ADC_read(2);
+         LDR_3 = (LDR_3 * (5.0/1024.0));
+         LDR_4 = ADC_read(3);
+         LDR_4 = (LDR_4 * (5.0/1024.0));
+}
+
+void pin_config(){
+
+     // sensores LDR
+
+     // sensor 1
+     trisa.ra0 = 1;   //define como entrada(1) ou saída(0)
+     porta.ra0 = 0;   //situação atual, desligado(0) ou ligado(1)
+
+     // sensor 2
+     trisa.ra1 = 1;
+     porta.ra1 = 0;
+
+     // sensor 3
+     trisa.ra2 = 1;
+     porta.ra2 = 0;
+
+     // sensor 4
+     trisa.ra3 = 1;
+     porta.ra3 = 0;
+
+     // motor_y
+     
+     // bobina 1
+     trisb.rb0 = 0;
+     motor_y1 = 0;
+
+     // bobina 2
+     trisb.rb1 = 0;
+     motor_y2 = 0;
+
+     // bobina 3
+     trisb.rb2 = 0;
+     motor_y3 = 0;
+
+     // bobina 4
+     trisb.rb3 = 0;
+     motor_y4 = 0;
+
+     // motor_x
+     
+     // bobina 5
+     trisb.rb4 = 0;
+     motor_x1 = 0;
+
+     // bobina 6
+     trisb.rb5 = 0;
+     motor_x2 = 0;
+
+     // bobina 7
+     trisb.rb6 = 0;
+     motor_x3 = 0;
+
+     // bobina 8
+     trisb.rb7 = 0;
+     motor_x4 = 0;
+
+     anselb = 0;
+}
+
+void sensor(){
+
+     // motor do eixo x
+
+     if(LDR_1 < LDR_2 && LDR_3 < LDR_4){
+       if(LDR_1 <= sol && LDR_3 <= sol){
+         if(posicao_x >= 0 && posicao_x < 4){
+             posicao_x++;
+         }
+       }
+     }
+     if(LDR_1 > LDR_2 && LDR_3 > LDR_4){
+       if(LDR_2 <= sol && LDR_4 <= sol){
+         if(posicao_x > 0 && posicao_x <= 4){
+             posicao_x--;
+         }
+       }
+     }
+     
+     // motor do eixo y
+     
+     if(LDR_3 < LDR_1 && LDR_4 < LDR_2){
+       if(LDR_3 <= sol && LDR_4 <= sol){
+         if(posicao_y > 0 && posicao_y <= 4){
+             posicao_y--;
+         }
+       }
+     }
+     if(LDR_3 > LDR_1 && LDR_4 > LDR_2){
+       if(LDR_1 <= sol && LDR_2 <= sol){
+         if(posicao_y >= 0 && posicao_y < 4){
+             posicao_y++;
+         }
+       }
+     }
+}
+
+void motor(posicao_x){
+
+     // posicao no eixo x
+
+     if(posicao_x == 0){
+         motor_x1 = 0;
+         motor_x2 = 0;
+         motor_x3 = 0;
+         motor_x4 = 0;
+         motor_x1 = 1;
+         motor_x3 = 1;
+         delay_ms(temp);
+     }   
+     if(posicao_x == 1){
+         motor_x1 = 0;
+         motor_x2 = 0;
+         motor_x3 = 0;
+         motor_x4 = 0;
+         motor_x1 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_x == 2){
+         motor_x1 = 0;
+         motor_x2 = 0;
+         motor_x3 = 0;
+         motor_x4 = 0;
+         motor_x1 = 1;
+         motor_x2 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_x == 3){
+         motor_x1 = 0;
+         motor_x2 = 0;
+         motor_x3 = 0;
+         motor_x4 = 0;
+         motor_x2 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_x == 4){
+         motor_x1 = 0;
+         motor_x2 = 0;
+         motor_x3 = 0;
+         motor_x4 = 0;
+         motor_x2 = 1;
+         motor_x4 = 1;
+         delay_ms(temp);
+     }
+
+     // posicao no eixo y
+
+     if(posicao_y == 0){
+         motor_y1 = 0;
+         motor_y2 = 0;
+         motor_y3 = 0;
+         motor_y4 = 0;
+         motor_y1 = 1;
+         motor_y3 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_y == 1){
+         motor_y1 = 0;
+         motor_y2 = 0;
+         motor_y3 = 0;
+         motor_y4 = 0;
+         motor_y1 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_y == 2){
+         motor_y1 = 0;
+         motor_y2 = 0;
+         motor_y3 = 0;
+         motor_y4 = 0;
+         motor_y1 = 1;
+         motor_y2 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_y == 3){
+         motor_y1 = 0;
+         motor_y2 = 0;
+         motor_y3 = 0;
+         motor_y4 = 0;
+         motor_y2 = 1;
+         delay_ms(temp);
+     }
+     if(posicao_y == 4){
+         motor_y1 = 0;
+         motor_y2 = 0;
+         motor_y3 = 0;
+         motor_y4 = 0;
+         motor_y2 = 1;
+         motor_y4 = 1;
+         delay_ms(temp);
+     }
+}
+
+void main() {
+     ADC_init();
+     pin_config();
+     while (1){
+           analogico();
+           sensor();
+           motor();
+     }
+}

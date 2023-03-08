@@ -1,0 +1,5 @@
+id: 1|nome: bea|idade: 15
+id: 2|nome: carlos|idade: 7
+id: 4|nome: kaneda|idade: 18
+id: 5|nome: potr|idade: 32
+id: 6|nome: sed|idade: 21|cpf: 12365478920
